@@ -1,0 +1,221 @@
+[
+    {
+        "type": "mouse",
+        "button": "Button.left",
+        "action": "click",
+        "pos": [1243, 165],
+        "time": 1
+    },
+    {
+        "type": "keyboard",
+        "key": "Key.shift",
+        "time": 1
+    },
+    {
+        "type": "keyboard",
+        "key": "H",
+        "time": 1
+    },
+    {
+        "type": "keyboard",
+        "key": "e",
+        "time": 1
+    },
+    {
+        "type": "keyboard",
+        "key": "l",
+        "time": 1
+    },
+    {
+        "type": "keyboard",
+        "key": "l",
+        "time": 1
+    },
+    {
+        "type": "keyboard",
+        "key": "o",
+        "time": 1.2324
+    },
+    {
+        "type": "keyboard",
+        "key": "Key.space",
+        "time": 1.4081
+    },
+    {
+        "type": "keyboard",
+        "key": "t",
+        "time": 1.6721
+    },
+    {
+        "type": "keyboard",
+        "key": "h",
+        "time": 1.7604
+    },
+    {
+        "type": "keyboard",
+        "key": "e",
+        "time": 1.8331
+    },
+    {
+        "type": "keyboard",
+        "key": "r",
+        "time": 1.9204
+    },
+    {
+        "type": "keyboard",
+        "key": "e",
+        "time": 2.0325
+    },
+    {
+        "type": "keyboard",
+        "key": "Key.enter",
+        "time": 2.84
+    },
+    {
+        "type": "keyboard",
+        "key": "Key.shift",
+        "time": 2
+    },
+    {
+        "type": "keyboard",
+        "key": "S",
+        "time": 2
+    },
+    {
+        "type": "keyboard",
+        "key": "e",
+        "time": 2
+    },
+    {
+        "type": "keyboard",
+        "key": "c",
+        "time": 2
+    },
+    {
+        "type": "keyboard",
+        "key": "o",
+        "time": 2
+    },
+    {
+        "type": "keyboard",
+        "key": "n",
+        "time": 2
+    },
+    {
+        "type": "keyboard",
+        "key": "d",
+        "time": 2
+    },
+    {
+        "type": "keyboard",
+        "key": "Key.space",
+        "time": 2
+    },
+    {
+        "type": "keyboard",
+        "key": "t",
+        "time": 2
+    },
+    {
+        "type": "keyboard",
+        "key": "e",
+        "time": 2
+    },
+    {
+        "type": "keyboard",
+        "key": "s",
+        "time": 2
+    },
+    {
+        "type": "keyboard",
+        "key": "t",
+        "time": 2
+    },
+    {
+        "type": "keyboard",
+        "key": "Key.enter",
+        "time": 2
+    },
+    {
+        "type": "keyboard",
+        "key": "Key.shift",
+        "time": 2
+    },
+    {
+        "type": "keyboard",
+        "key": "H",
+        "time": 2
+    },
+    {
+        "type": "keyboard",
+        "key": "o",
+        "time": 2
+    },
+    {
+        "type": "keyboard",
+        "key": "p",
+        "time": 2
+    },
+    {
+        "type": "keyboard",
+        "key": "e",
+        "time": 2
+    },
+    {
+        "type": "keyboard",
+        "key": "Key.space",
+        "time": 2
+    },
+    {
+        "type": "keyboard",
+        "key": "i",
+        "time": 2
+    },
+    {
+        "type": "keyboard",
+        "key": "t",
+        "time": 2
+    },
+    {
+        "type": "keyboard",
+        "key": "Key.space",
+        "time": 2
+    },
+    {
+        "type": "keyboard",
+        "key": "w",
+        "time": 2
+    },
+    {
+        "type": "keyboard",
+        "key": "o",
+        "time": 2
+    },
+    {
+        "type": "keyboard",
+        "key": "r",
+        "time": 2
+    },
+    {
+        "type": "keyboard",
+        "key": "k",
+        "time": 2
+    },
+    {
+        "type": "keyboard",
+        "key": "s",
+        "time": 2
+    },
+    {
+        "type": "keyboard",
+        "key": "Key.enter",
+        "time": 2
+    },
+    {
+        "type": "mouse",
+        "button": "Button.left",
+        "action": "click",
+        "pos": [663, 119],
+        "time": 2
+    }
+]

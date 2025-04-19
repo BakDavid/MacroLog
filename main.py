@@ -5,12 +5,14 @@ import time
 import json
 from pynput import keyboard, mouse # type: ignore
 from tkinter import simpledialog, messagebox
+from pynput.keyboard import Controller as KeyboardController, Key # type: ignore
+from pynput.mouse import Controller as MouseController, Button # type: ignore
 
 class MacroRecorderApp:
     def __init__(self, root):
         self.root = root
         self.root.title("MacroLog")
-        self.root.geometry("1000x400")
+        self.root.geometry("1000x500")
 
         self.recording = False
 
@@ -66,6 +68,16 @@ class MacroRecorderApp:
 
         self.delete_file_button = tk.Button(self.left_frame, text="Delete Selected File", command=self.delete_selected_file)
         self.delete_file_button.pack(pady=5)
+
+        self.details_table.bind("<Delete>", lambda e: self.delete_selected_event())
+        self.details_table.bind("<BackSpace>", lambda e: self.delete_selected_event())
+
+        self.recording_listbox.bind("<Delete>", lambda e: self.delete_selected_file())
+        self.recording_listbox.bind("<BackSpace>", lambda e: self.delete_selected_file())
+
+        self.playback_button = tk.Button(self.right_frame, text="Play Macro", command=self.play_macro)
+        self.playback_button.pack(pady=5)
+
 
     def toggle_recording(self):
         self.recording = not self.recording
@@ -224,18 +236,19 @@ class MacroRecorderApp:
 
 
     def delete_selected_event(self):
-        selected = self.details_table.focus()
-        if not selected:
-            messagebox.showinfo("Info", "No event selected.")
+        selected_items = self.details_table.selection()
+        if not selected_items:
+            messagebox.showinfo("Info", "No events selected.")
             return
 
-        confirm = messagebox.askyesno("Confirm Delete", "Are you sure you want to delete this event?")
+        confirm = messagebox.askyesno("Confirm Delete", f"Delete {len(selected_items)} selected event(s)?")
         if confirm:
-            index = int(selected)
-            self.details_table.delete(selected)
-            del self.current_data[index]
+            indices = sorted([int(i) for i in selected_items], reverse=True)
+            for index in indices:
+                self.details_table.delete(index)
+                del self.current_data[index]
 
-            # Reindex remaining rows to keep the Treeview and data in sync
+            # Reindex Treeview iids
             for i, row in enumerate(self.details_table.get_children()):
                 self.details_table.item(row, iid=i)
 
@@ -257,6 +270,41 @@ class MacroRecorderApp:
                 messagebox.showinfo("Deleted", f"'{filename}' has been deleted.")
             except Exception as e:
                 messagebox.showerror("Error", f"Failed to delete: {e}")
+
+    def play_macro(self):
+        if not hasattr(self, "current_data"):
+            messagebox.showinfo("Info", "No macro loaded to play.")
+            return
+
+        keyboard_controller = KeyboardController()
+        mouse_controller = MouseController()
+
+        last_time = 0
+        for event in self.current_data:
+            time.sleep(max(0, event["time"] - last_time))
+            last_time = event["time"]
+
+            if event["type"] == "keyboard":
+                key = event["key"]
+                try:
+                    if len(key) == 1:
+                        keyboard_controller.press(key)
+                        keyboard_controller.release(key)
+                    else:
+                        exec(f"keyboard_controller.press(Key.{key.lower()})")
+                        exec(f"keyboard_controller.release(Key.{key.lower()})")
+                except Exception as e:
+                    print(f"Keyboard error: {e}")
+            elif event["type"] == "mouse":
+                try:
+                    x, y = event["pos"]
+                    mouse_controller.position = (x, y)
+                    button = Button.left if 'left' in event["button"] else Button.right
+                    mouse_controller.press(button)
+                    mouse_controller.release(button)
+                except Exception as e:
+                    print(f"Mouse error: {e}")
+
 
 if __name__ == "__main__":
     root = tk.Tk()
