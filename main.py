@@ -60,12 +60,6 @@ class MacroRecorderApp:
 
         self.details_table.bind("<Double-1>", self.edit_event_popup)
 
-        self.save_button = tk.Button(self.right_frame, text="Save Changes", command=self.save_changes)
-        self.save_button.pack(pady=5)
-
-        self.delete_event_button = tk.Button(self.right_frame, text="Delete Selected Event", command=self.delete_selected_event)
-        self.delete_event_button.pack(pady=5)
-
         self.delete_file_button = tk.Button(self.left_frame, text="Delete Selected File", command=self.delete_selected_file)
         self.delete_file_button.pack(pady=5)
 
@@ -75,8 +69,19 @@ class MacroRecorderApp:
         self.recording_listbox.bind("<Delete>", lambda e: self.delete_selected_file())
         self.recording_listbox.bind("<BackSpace>", lambda e: self.delete_selected_file())
 
-        self.playback_button = tk.Button(self.right_frame, text="Play Macro", command=self.play_macro)
-        self.playback_button.pack(pady=5)
+        # Buttons inline
+        self.button_row = tk.Frame(self.right_frame)
+        self.button_row.pack(pady=5)
+
+        self.save_button = tk.Button(self.button_row, text="Save Changes", command=self.save_changes)
+        self.save_button.pack(side="left", padx=5)
+
+        self.delete_event_button = tk.Button(self.button_row, text="Delete Selected Event", command=self.delete_selected_event)
+        self.delete_event_button.pack(side="left", padx=5)
+
+        self.playback_button = tk.Button(self.button_row, text="Play Macro", command=self.play_macro)
+        self.playback_button.pack(side="left", padx=5)
+
 
 
     def toggle_recording(self):
@@ -276,25 +281,52 @@ class MacroRecorderApp:
             messagebox.showinfo("Info", "No macro loaded to play.")
             return
 
+        self.abort_playback = False
+
+        def on_key_press(key):
+            if key == Key.f12:
+                self.abort_playback = True
+                return False  # stop listener
+
+        listener = keyboard.Listener(on_press=on_key_press)
+        listener.start()
+
         keyboard_controller = KeyboardController()
         mouse_controller = MouseController()
 
         last_time = 0
         for event in self.current_data:
+            if self.abort_playback:
+                messagebox.showinfo("Aborted", "Playback stopped by user (F12).")
+                break
+
             time.sleep(max(0, event["time"] - last_time))
             last_time = event["time"]
 
             if event["type"] == "keyboard":
                 key = event["key"]
                 try:
-                    if len(key) == 1:
+                    special_keys = {
+                        'Key.space': Key.space,
+                        'Key.enter': Key.enter,
+                        'Key.esc': Key.esc,
+                        'Key.tab': Key.tab,
+                        'Key.shift': Key.shift,
+                        'Key.ctrl': Key.ctrl,
+                        'Key.alt': Key.alt,
+                        'Key.backspace': Key.backspace,
+                        'Key.delete': Key.delete
+                    }
+
+                    if key in special_keys:
+                        keyboard_controller.press(special_keys[key])
+                        keyboard_controller.release(special_keys[key])
+                    elif len(key) == 1:
                         keyboard_controller.press(key)
                         keyboard_controller.release(key)
-                    else:
-                        exec(f"keyboard_controller.press(Key.{key.lower()})")
-                        exec(f"keyboard_controller.release(Key.{key.lower()})")
                 except Exception as e:
                     print(f"Keyboard error: {e}")
+
             elif event["type"] == "mouse":
                 try:
                     x, y = event["pos"]
@@ -304,7 +336,7 @@ class MacroRecorderApp:
                     mouse_controller.release(button)
                 except Exception as e:
                     print(f"Mouse error: {e}")
-
+        listener.stop()
 
 if __name__ == "__main__":
     root = tk.Tk()
