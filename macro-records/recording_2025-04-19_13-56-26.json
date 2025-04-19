@@ -14,16 +14,6 @@
     "button": "Button.left",
     "action": "click",
     "pos": [
-      1229,
-      481
-    ],
-    "time": 1.3027
-  },
-  {
-    "type": "mouse",
-    "button": "Button.left",
-    "action": "click",
-    "pos": [
       1037,
       270
     ],
@@ -34,9 +24,9 @@
     "button": "Button.left",
     "action": "click",
     "pos": [
-      1178,
+      1037,
       270
     ],
-    "time": 2.9807
+    "time": 1.1027
   }
 ]

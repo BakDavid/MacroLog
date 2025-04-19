@@ -61,6 +61,11 @@ class MacroRecorderApp:
         self.save_button = tk.Button(self.right_frame, text="Save Changes", command=self.save_changes)
         self.save_button.pack(pady=5)
 
+        self.delete_event_button = tk.Button(self.right_frame, text="Delete Selected Event", command=self.delete_selected_event)
+        self.delete_event_button.pack(pady=5)
+
+        self.delete_file_button = tk.Button(self.left_frame, text="Delete Selected File", command=self.delete_selected_file)
+        self.delete_file_button.pack(pady=5)
 
     def toggle_recording(self):
         self.recording = not self.recording
@@ -172,22 +177,40 @@ class MacroRecorderApp:
         current = self.details_table.item(selected)["values"]
         type_, key, time_, extra = current
 
-        new_key = simpledialog.askstring("Edit Key/Button", "New Key/Button:", initialvalue=key)
-        new_time = simpledialog.askfloat("Edit Time", "New Time:", initialvalue=float(time_))
-        new_extra = simpledialog.askstring("Edit Extra", "New Extra (optional):", initialvalue=extra)
+        # Prompt only if the user wants to change the value (empty input means skip)
+        new_key = simpledialog.askstring("Edit Key/Button", "New Key/Button (leave blank to keep unchanged):", initialvalue=key)
+        new_time = simpledialog.askstring("Edit Time", "New Time (leave blank to keep unchanged):", initialvalue=str(time_))
+        new_extra = simpledialog.askstring("Edit Extra", "New Extra (optional, leave blank to keep unchanged):", initialvalue=extra)
 
-        # Update data structure
+        # Convert index safely
         index = int(selected)
-        self.current_data[index]["key" if type_ == "keyboard" else "button"] = new_key
-        self.current_data[index]["time"] = new_time
-        if type_ == "mouse":
+
+        # Update values conditionally
+        if new_key:
+            self.current_data[index]["key" if type_ == "keyboard" else "button"] = new_key
+        else:
+            new_key = key  # keep old value for display
+
+        if new_time:
+            try:
+                new_time = float(new_time)
+                self.current_data[index]["time"] = new_time
+            except ValueError:
+                new_time = time_  # fallback to original
+        else:
+            new_time = time_
+
+        if new_extra and type_ == "mouse":
             try:
                 self.current_data[index]["pos"] = eval(new_extra)
             except:
-                pass
+                pass  # leave as-is
+        else:
+            new_extra = extra
 
-        # Update UI
+        # Update the table row visually
         self.details_table.item(selected, values=(type_, new_key, new_time, new_extra))
+
 
     def save_changes(self):
         if not hasattr(self, "current_file") or not hasattr(self, "current_data"):
@@ -199,6 +222,41 @@ class MacroRecorderApp:
 
         messagebox.showinfo("Saved", f"Changes saved to {os.path.basename(self.current_file)}.")
 
+
+    def delete_selected_event(self):
+        selected = self.details_table.focus()
+        if not selected:
+            messagebox.showinfo("Info", "No event selected.")
+            return
+
+        confirm = messagebox.askyesno("Confirm Delete", "Are you sure you want to delete this event?")
+        if confirm:
+            index = int(selected)
+            self.details_table.delete(selected)
+            del self.current_data[index]
+
+            # Reindex remaining rows to keep the Treeview and data in sync
+            for i, row in enumerate(self.details_table.get_children()):
+                self.details_table.item(row, iid=i)
+
+    def delete_selected_file(self):
+        selection = self.recording_listbox.curselection()
+        if not selection:
+            messagebox.showinfo("Info", "No file selected.")
+            return
+
+        filename = self.recording_listbox.get(selection[0])
+        filepath = os.path.join(self.macro_folder, filename)
+
+        confirm = messagebox.askyesno("Confirm Delete", f"Delete file '{filename}'?")
+        if confirm:
+            try:
+                os.remove(filepath)
+                self.load_recordings_list()
+                self.details_table.delete(*self.details_table.get_children())
+                messagebox.showinfo("Deleted", f"'{filename}' has been deleted.")
+            except Exception as e:
+                messagebox.showerror("Error", f"Failed to delete: {e}")
 
 if __name__ == "__main__":
     root = tk.Tk()
