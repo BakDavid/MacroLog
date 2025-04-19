@@ -1,0 +1,57 @@
+[
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      1105,
+      612
+    ],
+    "time": 2.4636
+  },
+  {
+    "type": "keyboard",
+    "key": "f",
+    "time": 4.0413
+  },
+  {
+    "type": "keyboard",
+    "key": "h",
+    "time": 4.1443
+  },
+  {
+    "type": "keyboard",
+    "key": "s",
+    "time": 4.2648
+  },
+  {
+    "type": "keyboard",
+    "key": "r",
+    "time": 4.4644
+  },
+  {
+    "type": "keyboard",
+    "key": "v",
+    "time": 4.8166
+  },
+  {
+    "type": "keyboard",
+    "key": "Key.alt_l",
+    "time": 5.9046
+  },
+  {
+    "type": "keyboard",
+    "key": "Key.tab",
+    "time": 5.9684
+  },
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      585,
+      289
+    ],
+    "time": 7.3374
+  }
+]

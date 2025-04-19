@@ -1,6 +1,10 @@
 import tkinter as tk
 from tkinter import ttk
 import os
+import time
+import json
+from pynput import keyboard, mouse # type: ignore
+
 
 class MacroRecorderApp:
     def __init__(self, root):
@@ -51,11 +55,12 @@ class MacroRecorderApp:
         self.recording = not self.recording
         if self.recording:
             self.toggle_button.config(text="Stop Recording")
-            # TODO: Start recording inputs
+            self.start_recording()
         else:
             self.toggle_button.config(text="Start Recording")
-            # TODO: Stop recording and save file
+            self.stop_recording()
             self.load_recordings_list()
+
 
     def load_recordings_list(self):
         self.recording_listbox.delete(0, tk.END)
@@ -72,6 +77,57 @@ class MacroRecorderApp:
                 content = f.read()
             self.details_text.delete(1.0, tk.END)
             self.details_text.insert(tk.END, content)
+
+    def start_recording(self):
+        self.recording_data = []
+        self.start_time = time.time()
+
+        # Set up listeners
+        self.keyboard_listener = keyboard.Listener(on_press=self.on_key_press)
+        self.mouse_listener = mouse.Listener(on_click=self.on_click)
+
+        self.keyboard_listener.start()
+        self.mouse_listener.start()
+
+    def stop_recording(self):
+        self.keyboard_listener.stop()
+        self.mouse_listener.stop()
+
+        timestamp = time.strftime("%Y-%m-%d_%H-%M-%S")
+        filename = f"{self.macro_folder}/recording_{timestamp}.json"
+
+        with open(filename, "w") as f:
+            json.dump(self.recording_data, f, indent=2)
+
+        print(f"Saved recording: {filename}")
+
+    def get_elapsed_time(self):
+        return round(time.time() - self.start_time, 4)
+
+    def on_key_press(self, key):
+        try:
+            key_str = key.char if hasattr(key, 'char') and key.char else str(key)
+        except AttributeError:
+            key_str = str(key)
+
+        event = {
+            "type": "keyboard",
+            "key": key_str,
+            "time": self.get_elapsed_time()
+        }
+        self.recording_data.append(event)
+
+    def on_click(self, x, y, button, pressed):
+        if pressed:
+            event = {
+                "type": "mouse",
+                "button": str(button),
+                "action": "click",
+                "pos": [x, y],
+                "time": self.get_elapsed_time()
+            }
+            self.recording_data.append(event)
+
 
 if __name__ == "__main__":
     root = tk.Tk()

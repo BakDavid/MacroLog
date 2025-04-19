@@ -1,0 +1,32 @@
+[
+  {
+    "type": "mouse",
+    "button": "Button.right",
+    "action": "click",
+    "pos": [
+      953,
+      411
+    ],
+    "time": 1.0044
+  },
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      1003,
+      440
+    ],
+    "time": 2.3645
+  },
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      1201,
+      265
+    ],
+    "time": 3.4384
+  }
+]
