@@ -1,0 +1,82 @@
+[
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      827,
+      237
+    ],
+    "time": 2.2008
+  },
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      827,
+      237
+    ],
+    "time": 2.4307
+  },
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      827,
+      237
+    ],
+    "time": 2.7127
+  },
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      827,
+      237
+    ],
+    "time": 3.3308
+  },
+  {
+    "type": "mouse",
+    "button": "Button.right",
+    "action": "click",
+    "pos": [
+      827,
+      237
+    ],
+    "time": 3.8748
+  },
+  {
+    "type": "mouse",
+    "button": "Button.right",
+    "action": "click",
+    "pos": [
+      827,
+      237
+    ],
+    "time": 4.3327
+  },
+  {
+    "type": "mouse",
+    "button": "Button.right",
+    "action": "click",
+    "pos": [
+      827,
+      237
+    ],
+    "time": 4.7727
+  },
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      1032,
+      219
+    ],
+    "time": 5.8367
+  }
+]
