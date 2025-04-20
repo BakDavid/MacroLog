@@ -11,7 +11,7 @@ class MacroRecorderApp:
     def __init__(self, root):
         self.root = root
         self.root.title("MacroLog")
-        self.root.geometry("1000x500")
+        self.root.geometry("850x500")
 
         self.recording = False
 
@@ -66,6 +66,12 @@ class MacroRecorderApp:
         self.details_table.heading("time", text="Time")
         self.details_table.heading("extra", text="Extra")
 
+        # Adjust the column widths for the table
+        self.details_table.column("type", width=100, anchor="center")
+        self.details_table.column("key", width=120, anchor="center")
+        self.details_table.column("time", width=80, anchor="center")
+        self.details_table.column("extra", width=100, anchor="center")
+
         self.details_table.pack(side="left", expand=True, fill="both")
 
         scrollbar.config(command=self.details_table.yview)
@@ -100,7 +106,7 @@ class MacroRecorderApp:
         self.interval_label = tk.Label(self.button_row, text="Interval (s):")
         self.interval_label.pack(side="left", padx=5)
 
-        self.interval_entry = tk.Entry(self.button_row, width=8)  # Adjusted width
+        self.interval_entry = tk.Entry(self.button_row, width=6)  # Adjusted width
         self.interval_entry.insert(0, "0.01")  # Default value
         self.interval_entry.pack(side="left", padx=5)
 
@@ -113,7 +119,7 @@ class MacroRecorderApp:
         self.loop_count_label = tk.Label(self.button_row, text="Loop Count:")
         self.loop_count_label.pack(side="left", padx=5)
 
-        self.loop_count_entry = tk.Entry(self.button_row, width=8)
+        self.loop_count_entry = tk.Entry(self.button_row, width=6)
         self.loop_count_entry.insert(0, "1")  # Default value (1 loop)
         self.loop_count_entry.pack(side="left", padx=5)
 
@@ -436,7 +442,6 @@ class MacroRecorderApp:
 
         # Notify that playback is complete
         messagebox.showinfo("Playback Complete", "The macro has finished executing.")
-
 
 if __name__ == "__main__":
     root = tk.Tk()
