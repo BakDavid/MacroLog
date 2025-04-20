@@ -109,6 +109,15 @@ class MacroRecorderApp:
         self.apply_interval_checkbox = tk.Checkbutton(self.button_row, text="Apply Interval", variable=self.apply_interval_var)
         self.apply_interval_checkbox.pack(side="left", padx=5)
 
+        # Loop Count Entry
+        self.loop_count_label = tk.Label(self.button_row, text="Loop Count:")
+        self.loop_count_label.pack(side="left", padx=5)
+
+        self.loop_count_entry = tk.Entry(self.button_row, width=8)
+        self.loop_count_entry.insert(0, "1")  # Default value (1 loop)
+        self.loop_count_entry.pack(side="left", padx=5)
+
+
     def toggle_recording(self):
         self.recording = not self.recording
         if self.recording:
@@ -331,6 +340,17 @@ class MacroRecorderApp:
             messagebox.showinfo("Info", "No macro loaded to play.")
             return
 
+        # Minimize the window before starting the playback
+        self.root.iconify()  # Minimize the window
+
+        # Get the loop count from the entry (default to 1 if empty or invalid)
+        try:
+            loop_count = int(self.loop_count_entry.get().strip())
+            if loop_count < 1:
+                loop_count = 1  # Ensure at least one loop
+        except ValueError:
+            loop_count = 1  # Default to 1 if invalid input
+
         # Check if Apply Interval checkbox is checked
         apply_interval = self.apply_interval_var.get()  # Use the updated variable
         interval = 0.01  # Default interval
@@ -362,53 +382,61 @@ class MacroRecorderApp:
         keyboard_controller = KeyboardController()
         mouse_controller = MouseController()
 
-        last_time = 0
-        for event in self.current_data:
+        for _ in range(loop_count):  # Loop through the macro a number of times
             if self.abort_playback:
                 messagebox.showinfo("Aborted", "Playback stopped by user (F12).")
                 break
 
-            time.sleep(max(0, event["time"] - last_time))
-            last_time = event["time"]
+            last_time = 0
+            for event in self.current_data:
+                if self.abort_playback:
+                    break
 
-            if event["type"] == "keyboard":
-                key = event["key"]
-                try:
-                    special_keys = {
-                        'Key.space': Key.space,
-                        'Key.enter': Key.enter,
-                        'Key.esc': Key.esc,
-                        'Key.tab': Key.tab,
-                        'Key.shift': Key.shift,
-                        'Key.ctrl': Key.ctrl,
-                        'Key.alt': Key.alt,
-                        'Key.backspace': Key.backspace,
-                        'Key.delete': Key.delete
-                    }
+                time.sleep(max(0, event["time"] - last_time))
+                last_time = event["time"]
 
-                    if key in special_keys:
-                        keyboard_controller.press(special_keys[key])
-                        keyboard_controller.release(special_keys[key])
-                    elif len(key) == 1:
-                        keyboard_controller.press(key)
-                        keyboard_controller.release(key)
-                except Exception as e:
-                    print(f"Keyboard error: {e}")
+                if event["type"] == "keyboard":
+                    key = event["key"]
+                    try:
+                        special_keys = {
+                            'Key.space': Key.space,
+                            'Key.enter': Key.enter,
+                            'Key.esc': Key.esc,
+                            'Key.tab': Key.tab,
+                            'Key.shift': Key.shift,
+                            'Key.ctrl': Key.ctrl,
+                            'Key.alt': Key.alt,
+                            'Key.backspace': Key.backspace,
+                            'Key.delete': Key.delete
+                        }
 
-            elif event["type"] == "mouse":
-                try:
-                    x, y = event["pos"]
-                    mouse_controller.position = (x, y)
-                    button = Button.left if 'left' in event["button"] else Button.right
-                    mouse_controller.press(button)
-                    mouse_controller.release(button)
-                except Exception as e:
-                    print(f"Mouse error: {e}")
+                        if key in special_keys:
+                            keyboard_controller.press(special_keys[key])
+                            keyboard_controller.release(special_keys[key])
+                        elif len(key) == 1:
+                            keyboard_controller.press(key)
+                            keyboard_controller.release(key)
+                    except Exception as e:
+                        print(f"Keyboard error: {e}")
+
+                elif event["type"] == "mouse":
+                    try:
+                        x, y = event["pos"]
+                        mouse_controller.position = (x, y)
+                        button = Button.left if 'left' in event["button"] else Button.right
+                        mouse_controller.press(button)
+                        mouse_controller.release(button)
+                    except Exception as e:
+                        print(f"Mouse error: {e}")
 
         listener.stop()
 
+        # Restore the window after completion
+        self.root.after(100, self.root.deiconify)  # Restore the window after 100ms
+
         # Notify that playback is complete
         messagebox.showinfo("Playback Complete", "The macro has finished executing.")
+
 
 if __name__ == "__main__":
     root = tk.Tk()
