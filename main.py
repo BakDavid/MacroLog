@@ -96,6 +96,19 @@ class MacroRecorderApp:
         self.playback_button = tk.Button(self.button_row, text="Play Macro", command=self.play_macro)
         self.playback_button.pack(side="left", padx=5)
 
+        # Interval Entry and Checkbox
+        self.interval_label = tk.Label(self.button_row, text="Interval (s):")
+        self.interval_label.pack(side="left", padx=5)
+
+        self.interval_entry = tk.Entry(self.button_row, width=8)  # Adjusted width
+        self.interval_entry.insert(0, "0.01")  # Default value
+        self.interval_entry.pack(side="left", padx=5)
+
+        # Create a BooleanVar for Apply Interval checkbox
+        self.apply_interval_var = tk.BooleanVar()
+        self.apply_interval_checkbox = tk.Checkbutton(self.button_row, text="Apply Interval", variable=self.apply_interval_var)
+        self.apply_interval_checkbox.pack(side="left", padx=5)
+
     def toggle_recording(self):
         self.recording = not self.recording
         if self.recording:
@@ -318,6 +331,24 @@ class MacroRecorderApp:
             messagebox.showinfo("Info", "No macro loaded to play.")
             return
 
+        # Check if Apply Interval checkbox is checked
+        apply_interval = self.apply_interval_var.get()  # Use the updated variable
+        interval = 0.01  # Default interval
+
+        # Get the interval from the entry if the checkbox is checked
+        if apply_interval:
+            try:
+                interval = float(self.interval_entry.get().strip())
+            except ValueError:
+                messagebox.showerror("Invalid Interval", "Please enter a valid interval value.")
+                return
+
+            # Adjust the time of each event in the macro
+            last_time = 0
+            for event in self.current_data:
+                event["time"] = last_time
+                last_time += interval
+
         self.abort_playback = False
 
         def on_key_press(key):
@@ -373,7 +404,11 @@ class MacroRecorderApp:
                     mouse_controller.release(button)
                 except Exception as e:
                     print(f"Mouse error: {e}")
+
         listener.stop()
+
+        # Notify that playback is complete
+        messagebox.showinfo("Playback Complete", "The macro has finished executing.")
 
 if __name__ == "__main__":
     root = tk.Tk()
