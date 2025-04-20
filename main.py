@@ -24,7 +24,11 @@ class MacroRecorderApp:
 
         # Toggle button
         self.toggle_button = tk.Button(self.top_frame, text="Start Recording", command=self.toggle_recording)
-        self.toggle_button.pack()
+        self.toggle_button.pack(side="left")
+
+        # Information button moved to the right of the record button
+        self.info_button = tk.Button(self.top_frame, text="Information", command=self.show_information)
+        self.info_button.pack(side="left", padx=10)
 
         # Left: Recording list
         self.left_frame = tk.Frame(self.main_frame)
@@ -123,7 +127,43 @@ class MacroRecorderApp:
         self.loop_count_entry.insert(0, "1")  # Default value (1 loop)
         self.loop_count_entry.pack(side="left", padx=5)
 
+    def show_information(self):
+        # Create the information window
+        info_window = tk.Toplevel(self.root)
+        info_window.title("About MacroLog")
+        info_window.geometry("440x280")
 
+        # Center the info window
+        info_window.update_idletasks()  # Update geometry calculations
+        window_width = info_window.winfo_width()
+        window_height = info_window.winfo_height()
+        screen_width = self.root.winfo_screenwidth()
+        screen_height = self.root.winfo_screenheight()
+        center_x = (screen_width - window_width) // 2
+        center_y = (screen_height - window_height) // 2
+        info_window.geometry(f"{window_width}x{window_height}+{center_x}+{center_y}")
+
+        # Info text
+        info_text = (
+            "MacroLog Information:\n\n"
+            "1. Start Recording: Click to start/stop recording user actions.\n"
+            "2. Play Macro: Play the recorded macro actions.\n"
+            "3. Delete Event: Delete the selected event in the macro.\n"
+            "4. Interval (s): Set the interval between actions during playback.\n"
+            "5. Apply Interval: If checked, applies the interval to each action.\n"
+            "6. Loop Count: Set the number of times to loop the macro during playback.\n\n"
+            "Keyboard Shortcuts:\n"
+            " - F12: Stop playback.\n"
+            " - Delete/Backspace: Delete selected event or file."
+        )
+
+        label = tk.Label(info_window, text=info_text, justify="left")
+        label.pack(padx=10, pady=10)
+
+        # Close button
+        close_button = tk.Button(info_window, text="Close", command=info_window.destroy)
+        close_button.pack(pady=10)
+        
     def toggle_recording(self):
         self.recording = not self.recording
         if self.recording:
