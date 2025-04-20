@@ -163,6 +163,12 @@ class MacroRecorderApp:
         # Close button
         close_button = tk.Button(info_window, text="Close", command=info_window.destroy)
         close_button.pack(pady=10)
+
+    def show_foreground_message(self, title, message):
+        temp_root = tk.Toplevel(self.root)
+        temp_root.withdraw()  # Hide the window
+        temp_root.attributes('-topmost', True)  # Bring it to the front
+        temp_root.after(10, lambda: messagebox.showinfo(title, message, parent=temp_root))
         
     def toggle_recording(self):
         self.recording = not self.recording
@@ -209,6 +215,7 @@ class MacroRecorderApp:
                 self.recording_listbox.insert(tk.END, display_name)
 
     def start_recording(self):
+        self.root.iconify()  # Minimize the window
         self.recording_data = []
         self.start_time = time.time()
 
@@ -237,6 +244,8 @@ class MacroRecorderApp:
 
         print(f"Saved recording: {filename}")
 
+        # Restore the window after completion
+        self.root.after(100, self.root.deiconify)  # Restore the window after 100ms
 
     def get_elapsed_time(self):
         return round(time.time() - self.start_time, 4)
@@ -430,7 +439,7 @@ class MacroRecorderApp:
 
         for _ in range(loop_count):  # Loop through the macro a number of times
             if self.abort_playback:
-                messagebox.showinfo("Aborted", "Playback stopped by user (F12).")
+                self.show_foreground_message("Aborted", "Playback stopped by user (F12).")
                 break
 
             last_time = 0
