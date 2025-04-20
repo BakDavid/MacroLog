@@ -1,12 +1,11 @@
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, simpledialog, messagebox
 import os
 import time
 import json
-from pynput import keyboard, mouse # type: ignore
-from tkinter import simpledialog, messagebox
-from pynput.keyboard import Controller as KeyboardController, Key # type: ignore
-from pynput.mouse import Controller as MouseController, Button # type: ignore
+from pynput import keyboard, mouse  # type: ignore
+from pynput.keyboard import Controller as KeyboardController, Key  # type: ignore
+from pynput.mouse import Controller as MouseController, Button  # type: ignore
 
 class MacroRecorderApp:
     def __init__(self, root):
@@ -73,16 +72,11 @@ class MacroRecorderApp:
         self.button_row = tk.Frame(self.right_frame)
         self.button_row.pack(pady=5)
 
-        self.save_button = tk.Button(self.button_row, text="Save Changes", command=self.save_changes)
-        self.save_button.pack(side="left", padx=5)
-
         self.delete_event_button = tk.Button(self.button_row, text="Delete Selected Event", command=self.delete_selected_event)
         self.delete_event_button.pack(side="left", padx=5)
 
         self.playback_button = tk.Button(self.button_row, text="Play Macro", command=self.play_macro)
         self.playback_button.pack(side="left", padx=5)
-
-
 
     def toggle_recording(self):
         self.recording = not self.recording
@@ -193,52 +187,78 @@ class MacroRecorderApp:
 
         current = self.details_table.item(selected)["values"]
         type_, key, time_, extra = current
-
-        # Prompt only if the user wants to change the value (empty input means skip)
-        new_key = simpledialog.askstring("Edit Key/Button", "New Key/Button (leave blank to keep unchanged):", initialvalue=key)
-        new_time = simpledialog.askstring("Edit Time", "New Time (leave blank to keep unchanged):", initialvalue=str(time_))
-        new_extra = simpledialog.askstring("Edit Extra", "New Extra (optional, leave blank to keep unchanged):", initialvalue=extra)
-
-        # Convert index safely
         index = int(selected)
 
-        # Update values conditionally
-        if new_key:
-            self.current_data[index]["key" if type_ == "keyboard" else "button"] = new_key
-        else:
-            new_key = key  # keep old value for display
+        popup = tk.Toplevel(self.root)
+        popup.title("Edit Event")
+        popup.geometry("300x200")
+        popup.transient(self.root)
+        popup.grab_set()
 
-        if new_time:
-            try:
-                new_time = float(new_time)
-                self.current_data[index]["time"] = new_time
-            except ValueError:
-                new_time = time_  # fallback to original
-        else:
-            new_time = time_
+        # Center the popup relative to the root window
+        self.root.update_idletasks()
+        root_x = self.root.winfo_x()
+        root_y = self.root.winfo_y()
+        root_width = self.root.winfo_width()
+        root_height = self.root.winfo_height()
+        popup_width = 300
+        popup_height = 200
+        x = root_x + (root_width // 2) - (popup_width // 2)
+        y = root_y + (root_height // 2) - (popup_height // 2)
+        popup.geometry(f"{popup_width}x{popup_height}+{x}+{y}")
 
-        if new_extra and type_ == "mouse":
-            try:
-                self.current_data[index]["pos"] = eval(new_extra)
-            except:
-                pass  # leave as-is
-        else:
-            new_extra = extra
+        tk.Label(popup, text="Key/Button:").pack(pady=5)
+        key_entry = tk.Entry(popup)
+        key_entry.insert(0, key)
+        key_entry.pack()
 
-        # Update the table row visually
-        self.details_table.item(selected, values=(type_, new_key, new_time, new_extra))
+        tk.Label(popup, text="Time:").pack(pady=5)
+        time_entry = tk.Entry(popup)
+        time_entry.insert(0, str(time_))
+        time_entry.pack()
 
+        tk.Label(popup, text="Extra (pos):").pack(pady=5)
+        extra_entry = tk.Entry(popup)
+        extra_entry.insert(0, str(extra))
+        extra_entry.pack()
 
-    def save_changes(self):
-        if not hasattr(self, "current_file") or not hasattr(self, "current_data"):
-            messagebox.showinfo("Info", "No file selected to save.")
-            return
+        def save_and_close():
+            new_key = key_entry.get().strip()
+            new_time = time_entry.get().strip()
+            new_extra = extra_entry.get().strip()
 
-        with open(self.current_file, "w") as f:
-            json.dump(self.current_data, f, indent=2)
+            # Update internal data
+            if new_key:
+                self.current_data[index]["key" if type_ == "keyboard" else "button"] = new_key
+            if new_time:
+                try:
+                    self.current_data[index]["time"] = float(new_time)
+                except ValueError:
+                    pass
+            if new_extra and type_ == "mouse":
+                try:
+                    self.current_data[index]["pos"] = eval(new_extra)
+                except:
+                    pass
 
-        messagebox.showinfo("Saved", f"Changes saved to {os.path.basename(self.current_file)}.")
+            # Write updated data to JSON immediately
+            if hasattr(self, "current_file"):
+                with open(self.current_file, "w") as f:
+                    json.dump(self.current_data, f, indent=2)
 
+            # Refresh the table row
+            updated_key = self.current_data[index].get("key") or self.current_data[index].get("button")
+            updated_time = self.current_data[index]["time"]
+            updated_extra = str(self.current_data[index].get("pos", "")) if type_ == "mouse" else ""
+
+            self.details_table.item(selected, values=(type_, updated_key, updated_time, updated_extra))
+            popup.destroy()
+
+        btn_frame = tk.Frame(popup)
+        btn_frame.pack(pady=10)
+
+        tk.Button(btn_frame, text="Cancel", command=popup.destroy).pack(side="left", padx=10)
+        tk.Button(btn_frame, text="Save", command=save_and_close).pack(side="left", padx=10)
 
     def delete_selected_event(self):
         selected_items = self.details_table.selection()
