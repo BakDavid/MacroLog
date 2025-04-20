@@ -33,8 +33,16 @@ class MacroRecorderApp:
         self.recordings_label = tk.Label(self.left_frame, text="Saved Recordings")
         self.recordings_label.pack()
 
-        self.recording_listbox = tk.Listbox(self.left_frame, width=30)
-        self.recording_listbox.pack(expand=True, fill='y')
+        listbox_frame = tk.Frame(self.left_frame)
+        listbox_frame.pack(expand=True, fill='both')
+
+        self.recording_listbox = tk.Listbox(listbox_frame, width=30)
+        self.recording_listbox.pack(side='left', expand=True, fill='both')
+
+        listbox_scrollbar = ttk.Scrollbar(listbox_frame, orient='vertical', command=self.recording_listbox.yview)
+        listbox_scrollbar.pack(side='right', fill='y')
+
+        self.recording_listbox.config(yscrollcommand=listbox_scrollbar.set)
         self.recording_listbox.bind('<<ListboxSelect>>', self.load_recording_details)
 
         # Right: Recording details
@@ -44,13 +52,23 @@ class MacroRecorderApp:
         self.details_label = tk.Label(self.right_frame, text="Recording Details")
         self.details_label.pack()
 
-        self.details_table = ttk.Treeview(self.right_frame, columns=("type", "key", "time", "extra"), show="headings")
+        # Treeview + Scrollbar wrapper
+        table_frame = tk.Frame(self.right_frame)
+        table_frame.pack(expand=True, fill="both")
+
+        # Vertical scrollbar - always visible by reserving space
+        scrollbar = ttk.Scrollbar(table_frame, orient="vertical")
+        scrollbar.pack(side="right", fill="y")
+
+        self.details_table = ttk.Treeview(table_frame, columns=("type", "key", "time", "extra"), show="headings", yscrollcommand=scrollbar.set)
         self.details_table.heading("type", text="Type")
         self.details_table.heading("key", text="Key/Button")
         self.details_table.heading("time", text="Time")
         self.details_table.heading("extra", text="Extra")
 
-        self.details_table.pack(expand=True, fill="both")
+        self.details_table.pack(side="left", expand=True, fill="both")
+
+        scrollbar.config(command=self.details_table.yview)
 
         self.macro_folder = "macro-records"
         os.makedirs(self.macro_folder, exist_ok=True)
@@ -92,7 +110,7 @@ class MacroRecorderApp:
     def load_recording_details(self, event):
         selection = self.recording_listbox.curselection()
         if selection:
-            filename = self.recording_listbox.get(selection[0])
+            filename = self.recording_listbox.get(selection[0]) + ".json"
             filepath = os.path.join(self.macro_folder, filename)
             with open(filepath, 'r') as f:
                 try:
@@ -115,13 +133,12 @@ class MacroRecorderApp:
 
             self.current_file = filepath
 
-
     def load_recordings_list(self):
         self.recording_listbox.delete(0, tk.END)
         for file in os.listdir(self.macro_folder):
             if file.endswith(".json"):
-                self.recording_listbox.insert(tk.END, file)
-
+                display_name = file[:-5]  # remove ".json"
+                self.recording_listbox.insert(tk.END, display_name)
 
     def start_recording(self):
         self.recording_data = []
@@ -283,7 +300,7 @@ class MacroRecorderApp:
             messagebox.showinfo("Info", "No file selected.")
             return
 
-        filename = self.recording_listbox.get(selection[0])
+        filename = self.recording_listbox.get(selection[0]) + ".json"
         filepath = os.path.join(self.macro_folder, filename)
 
         confirm = messagebox.askyesno("Confirm Delete", f"Delete file '{filename}'?")
