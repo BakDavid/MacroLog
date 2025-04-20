@@ -361,15 +361,33 @@ class MacroRecorderApp:
             return
 
         confirm = messagebox.askyesno("Confirm Delete", f"Delete {len(selected_items)} selected event(s)?")
-        if confirm:
-            indices = sorted([int(i) for i in selected_items], reverse=True)
-            for index in indices:
-                self.details_table.delete(index)
-                del self.current_data[index]
+        if not confirm:
+            return
 
-            # Reindex Treeview iids
-            for i, row in enumerate(self.details_table.get_children()):
-                self.details_table.item(row, iid=i)
+        # Delete from both Treeview and current_data (in reverse order)
+        indices = sorted([int(i) for i in selected_items], reverse=True)
+        for index in indices:
+            try:
+                del self.current_data[index]
+            except IndexError:
+                continue
+
+        # Rewrite the file
+        if hasattr(self, "current_file"):
+            try:
+                with open(self.current_file, "w") as f:
+                    json.dump(self.current_data, f, indent=2)
+            except Exception as e:
+                messagebox.showerror("File Write Error", f"Failed to save file: {e}")
+
+        # Refresh the table with updated data
+        self.details_table.delete(*self.details_table.get_children())
+        for i, entry in enumerate(self.current_data):
+            type_ = entry.get("type")
+            key = entry.get("key") or entry.get("button")
+            time_ = entry.get("time")
+            extra = str(entry.get("pos", "")) if type_ == "mouse" else ""
+            self.details_table.insert("", "end", iid=i, values=(type_, key, time_, extra))
 
     def delete_selected_file(self):
         selection = self.recording_listbox.curselection()
