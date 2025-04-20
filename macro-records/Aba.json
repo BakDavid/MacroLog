@@ -1,0 +1,182 @@
+[
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      976,
+      495
+    ],
+    "time": 0.8147
+  },
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      976,
+      495
+    ],
+    "time": 0.8148
+  },
+  {
+    "type": "keyboard",
+    "key": "a",
+    "time": 1.2014
+  },
+  {
+    "type": "keyboard",
+    "key": "a",
+    "time": 1.2016
+  },
+  {
+    "type": "keyboard",
+    "key": "a",
+    "time": 1.2021
+  },
+  {
+    "type": "keyboard",
+    "key": "b",
+    "time": 1.4651
+  },
+  {
+    "type": "keyboard",
+    "key": "b",
+    "time": 1.4653
+  },
+  {
+    "type": "keyboard",
+    "key": "b",
+    "time": 1.4654
+  },
+  {
+    "type": "keyboard",
+    "key": "a",
+    "time": 1.6567
+  },
+  {
+    "type": "keyboard",
+    "key": "a",
+    "time": 1.6568
+  },
+  {
+    "type": "keyboard",
+    "key": "a",
+    "time": 1.6569
+  },
+  {
+    "type": "keyboard",
+    "key": "Key.alt_l",
+    "time": 2.3529
+  },
+  {
+    "type": "keyboard",
+    "key": "Key.alt_l",
+    "time": 2.3529
+  },
+  {
+    "type": "keyboard",
+    "key": "Key.alt_l",
+    "time": 2.353
+  },
+  {
+    "type": "keyboard",
+    "key": "Key.alt_l",
+    "time": 2.577
+  },
+  {
+    "type": "keyboard",
+    "key": "Key.alt_l",
+    "time": 2.5771
+  },
+  {
+    "type": "keyboard",
+    "key": "Key.alt_l",
+    "time": 2.5773
+  },
+  {
+    "type": "keyboard",
+    "key": "Key.tab",
+    "time": 2.7372
+  },
+  {
+    "type": "keyboard",
+    "key": "Key.tab",
+    "time": 2.7372
+  },
+  {
+    "type": "keyboard",
+    "key": "Key.tab",
+    "time": 2.7373
+  },
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      1342,
+      447
+    ],
+    "time": 4.1729
+  },
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      1342,
+      447
+    ],
+    "time": 4.1731
+  },
+  {
+    "type": "keyboard",
+    "key": "Key.shift",
+    "time": 5.4011
+  },
+  {
+    "type": "keyboard",
+    "key": "Key.shift",
+    "time": 5.4013
+  },
+  {
+    "type": "keyboard",
+    "key": "A",
+    "time": 5.5453
+  },
+  {
+    "type": "keyboard",
+    "key": "A",
+    "time": 5.5457
+  },
+  {
+    "type": "keyboard",
+    "key": "b",
+    "time": 5.7532
+  },
+  {
+    "type": "keyboard",
+    "key": "b",
+    "time": 5.7534
+  },
+  {
+    "type": "keyboard",
+    "key": "a",
+    "time": 5.8332
+  },
+  {
+    "type": "keyboard",
+    "key": "a",
+    "time": 5.8335
+  },
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      914,
+      593
+    ],
+    "time": 6.4869
+  }
+]

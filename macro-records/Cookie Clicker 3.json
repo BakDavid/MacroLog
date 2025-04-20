@@ -1,0 +1,262 @@
+[
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      302,
+      487
+    ],
+    "time": 0.9968
+  },
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      302,
+      487
+    ],
+    "time": 1.1426
+  },
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      302,
+      487
+    ],
+    "time": 1.2846
+  },
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      302,
+      487
+    ],
+    "time": 1.4504
+  },
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      302,
+      487
+    ],
+    "time": 1.5884
+  },
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      302,
+      487
+    ],
+    "time": 1.7325
+  },
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      302,
+      487
+    ],
+    "time": 1.8926
+  },
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      302,
+      487
+    ],
+    "time": 2.0568
+  },
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      302,
+      487
+    ],
+    "time": 2.2243
+  },
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      302,
+      487
+    ],
+    "time": 2.3988
+  },
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      1724,
+      1006
+    ],
+    "time": 4.3127
+  },
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      1720,
+      931
+    ],
+    "time": 4.8545
+  },
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      1715,
+      859
+    ],
+    "time": 5.3507
+  },
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      1712,
+      809
+    ],
+    "time": 5.7987
+  },
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      1707,
+      730
+    ],
+    "time": 6.2344
+  },
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      1719,
+      673
+    ],
+    "time": 6.6045
+  },
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      1717,
+      614
+    ],
+    "time": 7.0347
+  },
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      1718,
+      553
+    ],
+    "time": 7.5348
+  },
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      1734,
+      486
+    ],
+    "time": 7.9848
+  },
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      1736,
+      418
+    ],
+    "time": 8.5065
+  },
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      1733,
+      337
+    ],
+    "time": 9.0488
+  },
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      1630,
+      246
+    ],
+    "time": 13.7348
+  },
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      1698,
+      253
+    ],
+    "time": 15.3227
+  },
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      1762,
+      252
+    ],
+    "time": 15.9427
+  },
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      1816,
+      250
+    ],
+    "time": 16.4965
+  },
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      1874,
+      247
+    ],
+    "time": 17.1466
+  }
+]

@@ -1,0 +1,12 @@
+[
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      301,
+      492
+    ],
+    "time": 1.4966
+  }
+]

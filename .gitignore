@@ -1,0 +1,8 @@
+# PyInstaller output
+build/
+dist/
+__pycache__/
+*.spec
+
+# Optionally ignore logs or temp files
+*.log

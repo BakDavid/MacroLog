@@ -1,0 +1,397 @@
+[
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      1842,
+      887
+    ],
+    "time": 2.208
+  },
+  {
+    "type": "keyboard",
+    "key": "Key.shift",
+    "time": 4.7281
+  },
+  {
+    "type": "keyboard",
+    "key": "Key.shift",
+    "time": 5.2406
+  },
+  {
+    "type": "keyboard",
+    "key": "Key.shift",
+    "time": 5.2722
+  },
+  {
+    "type": "keyboard",
+    "key": "Key.shift",
+    "time": 5.3036
+  },
+  {
+    "type": "keyboard",
+    "key": "Key.shift",
+    "time": 5.3342
+  },
+  {
+    "type": "keyboard",
+    "key": "Key.shift",
+    "time": 5.365
+  },
+  {
+    "type": "keyboard",
+    "key": "Z",
+    "time": 5.3846
+  },
+  {
+    "type": "keyboard",
+    "key": "o",
+    "time": 5.5684
+  },
+  {
+    "type": "keyboard",
+    "key": "l",
+    "time": 5.7604
+  },
+  {
+    "type": "keyboard",
+    "key": "t",
+    "time": 5.8163
+  },
+  {
+    "type": "keyboard",
+    "key": "a",
+    "time": 5.9683
+  },
+  {
+    "type": "keyboard",
+    "key": "n",
+    "time": 6.0324
+  },
+  {
+    "type": "keyboard",
+    "key": "Key.space",
+    "time": 6.6158
+  },
+  {
+    "type": "keyboard",
+    "key": "t",
+    "time": 6.8004
+  },
+  {
+    "type": "keyboard",
+    "key": "e",
+    "time": 6.8484
+  },
+  {
+    "type": "keyboard",
+    "key": "Key.space",
+    "time": 9.7599
+  },
+  {
+    "type": "keyboard",
+    "key": "m",
+    "time": 9.8883
+  },
+  {
+    "type": "keyboard",
+    "key": "i",
+    "time": 9.9924
+  },
+  {
+    "type": "keyboard",
+    "key": "e",
+    "time": 10.0643
+  },
+  {
+    "type": "keyboard",
+    "key": "r",
+    "time": 10.1363
+  },
+  {
+    "type": "keyboard",
+    "key": "t",
+    "time": 10.2804
+  },
+  {
+    "type": "keyboard",
+    "key": "Key.space",
+    "time": 10.3601
+  },
+  {
+    "type": "keyboard",
+    "key": "k",
+    "time": 10.8164
+  },
+  {
+    "type": "keyboard",
+    "key": "a",
+    "time": 10.9444
+  },
+  {
+    "type": "keyboard",
+    "key": "p",
+    "time": 11.0244
+  },
+  {
+    "type": "keyboard",
+    "key": "t",
+    "time": 11.2079
+  },
+  {
+    "type": "keyboard",
+    "key": "a",
+    "time": 11.3364
+  },
+  {
+    "type": "keyboard",
+    "key": "l",
+    "time": 11.4244
+  },
+  {
+    "type": "keyboard",
+    "key": "Key.space",
+    "time": 11.7122
+  },
+  {
+    "type": "keyboard",
+    "key": "k",
+    "time": 11.8564
+  },
+  {
+    "type": "keyboard",
+    "key": "i",
+    "time": 11.9694
+  },
+  {
+    "type": "keyboard",
+    "key": "Key.space",
+    "time": 12.1041
+  },
+  {
+    "type": "keyboard",
+    "key": "Key.shift",
+    "time": 12.4641
+  },
+  {
+    "type": "keyboard",
+    "key": "U",
+    "time": 12.8159
+  },
+  {
+    "type": "keyboard",
+    "key": "r",
+    "time": 13.0803
+  },
+  {
+    "type": "keyboard",
+    "key": "g",
+    "time": 13.2485
+  },
+  {
+    "type": "keyboard",
+    "key": "o",
+    "time": 13.3279
+  },
+  {
+    "type": "keyboard",
+    "key": "t",
+    "time": 13.4803
+  },
+  {
+    "type": "keyboard",
+    "key": "t",
+    "time": 13.6243
+  },
+  {
+    "type": "keyboard",
+    "key": "a",
+    "time": 13.7523
+  },
+  {
+    "type": "keyboard",
+    "key": "l",
+    "time": 13.8084
+  },
+  {
+    "type": "keyboard",
+    "key": "Key.space",
+    "time": 13.9521
+  },
+  {
+    "type": "keyboard",
+    "key": "x",
+    "time": 14.1044
+  },
+  {
+    "type": "keyboard",
+    "key": "d",
+    "time": 14.2882
+  },
+  {
+    "type": "keyboard",
+    "key": "Key.enter",
+    "time": 15.608
+  },
+  {
+    "type": "keyboard",
+    "key": "Key.shift",
+    "time": 15.8161
+  },
+  {
+    "type": "keyboard",
+    "key": "H",
+    "time": 15.9279
+  },
+  {
+    "type": "keyboard",
+    "key": "a",
+    "time": 16.1199
+  },
+  {
+    "type": "keyboard",
+    "key": "h",
+    "time": 16.2559
+  },
+  {
+    "type": "keyboard",
+    "key": "a",
+    "time": 16.3683
+  },
+  {
+    "type": "keyboard",
+    "key": "g",
+    "time": 16.4568
+  },
+  {
+    "type": "keyboard",
+    "key": "a",
+    "time": 16.5775
+  },
+  {
+    "type": "keyboard",
+    "key": "h",
+    "time": 16.6723
+  },
+  {
+    "type": "keyboard",
+    "key": "a",
+    "time": 16.7999
+  },
+  {
+    "type": "keyboard",
+    "key": "h",
+    "time": 16.9055
+  },
+  {
+    "type": "keyboard",
+    "key": "e",
+    "time": 16.9783
+  },
+  {
+    "type": "keyboard",
+    "key": "j",
+    "time": 17.0804
+  },
+  {
+    "type": "keyboard",
+    "key": "h",
+    "time": 17.0815
+  },
+  {
+    "type": "keyboard",
+    "key": "n",
+    "time": 17.0887
+  },
+  {
+    "type": "keyboard",
+    "key": "e",
+    "time": 17.192
+  },
+  {
+    "type": "keyboard",
+    "key": "s",
+    "time": 17.1927
+  },
+  {
+    "type": "keyboard",
+    "key": "j",
+    "time": 17.2723
+  },
+  {
+    "type": "keyboard",
+    "key": "u",
+    "time": 17.2737
+  },
+  {
+    "type": "keyboard",
+    "key": "g",
+    "time": 17.4003
+  },
+  {
+    "type": "keyboard",
+    "key": "i",
+    "time": 17.472
+  },
+  {
+    "type": "keyboard",
+    "key": "j",
+    "time": 17.4799
+  },
+  {
+    "type": "keyboard",
+    "key": "e",
+    "time": 17.504
+  },
+  {
+    "type": "keyboard",
+    "key": "Key.enter",
+    "time": 18.096
+  },
+  {
+    "type": "keyboard",
+    "key": "h",
+    "time": 18.1365
+  },
+  {
+    "type": "keyboard",
+    "key": "r",
+    "time": 18.192
+  },
+  {
+    "type": "keyboard",
+    "key": "d",
+    "time": 18.233
+  },
+  {
+    "type": "keyboard",
+    "key": "h",
+    "time": 18.3363
+  },
+  {
+    "type": "keyboard",
+    "key": "r",
+    "time": 18.4244
+  },
+  {
+    "type": "keyboard",
+    "key": "d",
+    "time": 18.4414
+  },
+  {
+    "type": "keyboard",
+    "key": "j",
+    "time": 18.5444
+  },
+  {
+    "type": "keyboard",
+    "key": "d",
+    "time": 18.6643
+  },
+  {
+    "type": "keyboard",
+    "key": "f",
+    "time": 18.6724
+  }
+]

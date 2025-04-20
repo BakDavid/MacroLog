@@ -1,0 +1,82 @@
+[
+  {
+    "type": "mouse",
+    "button": "Button.left",
+    "action": "click",
+    "pos": [
+      1209,
+      241
+    ],
+    "time": 0.7693
+  },
+  {
+    "type": "keyboard",
+    "key": "Key.shift",
+    "time": 1.3754
+  },
+  {
+    "type": "keyboard",
+    "key": "T",
+    "time": 1.5678
+  },
+  {
+    "type": "keyboard",
+    "key": "e",
+    "time": 1.8556
+  },
+  {
+    "type": "keyboard",
+    "key": "s",
+    "time": 2.0716
+  },
+  {
+    "type": "keyboard",
+    "key": "t",
+    "time": 2.1516
+  },
+  {
+    "type": "keyboard",
+    "key": "Key.space",
+    "time": 2.8713
+  },
+  {
+    "type": "keyboard",
+    "key": "s",
+    "time": 3.1196
+  },
+  {
+    "type": "keyboard",
+    "key": "a",
+    "time": 3.1356
+  },
+  {
+    "type": "keyboard",
+    "key": "h",
+    "time": 3.5596
+  },
+  {
+    "type": "keyboard",
+    "key": "Key.enter",
+    "time": 4.3192
+  },
+  {
+    "type": "keyboard",
+    "key": "g",
+    "time": 4.7276
+  },
+  {
+    "type": "keyboard",
+    "key": "r",
+    "time": 4.8315
+  },
+  {
+    "type": "keyboard",
+    "key": "d",
+    "time": 4.8487
+  },
+  {
+    "type": "keyboard",
+    "key": "h",
+    "time": 4.9514
+  }
+]
