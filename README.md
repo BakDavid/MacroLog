@@ -77,6 +77,7 @@ MacroLog/
 ├── requirements.txt       # Runtime dependencies
 ├── requirements-dev.txt   # Dev tools like PyInstaller
 ├── .gitignore             # Files/folders to exclude from git
+├── LICENSE                # The project license file
 └── README.md              # This file
 ```
 
